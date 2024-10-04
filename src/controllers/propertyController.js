@@ -736,6 +736,7 @@ const getPropertiesByUserId = async (req, res) => {
 //get all properties ----- for landing page
 const getAllProperties = async (req, res) => {
   try {
+    console.log("all props");
     // Define arrays to store the different property types
     let fields = [];
     let residentials = [];

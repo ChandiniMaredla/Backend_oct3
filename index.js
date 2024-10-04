@@ -59,6 +59,7 @@ app.use('/api/location', locationRoutes);
 app.use('/api/layout', verifyJwt, layoutRoutes);
 app.use(errorHandler);
 app.get('/', (req, res) => {
+  console.log('Welcome to my API!');
   res.send('Welcome to my API!');
 });
 mongoose.connect('mongodb+srv://ITCC:x3txwwBMqr1bQZnR@atlascluster.30o4fpw.mongodb.net/RealEstate?retryWrites=true&w=majority&appName=AtlasCluster')
