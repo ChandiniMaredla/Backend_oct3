@@ -35,37 +35,27 @@ app.use(cors({
 
 app.options('*', cors());
 app.use(bodyParser.json());
-// app.use('/', noAuthRouter);
-// app.use('/users', verifyJwt, userRoutes);
-// app.use('/wishlist',verifyJwt, wishlistRoutes);
-// app.use('/fields', verifyJwt, fieldRoutes);
-// app.use('/property',verifyJwt,propertyRoutes);
-// app.use('/agent',verifyJwt,agentRoutes);
-// app.use('/residential',verifyJwt,residentialRoutes);
-// app.use('/commercials',verifyJwt,commercialRoutes);
-// app.use('/booking',verifyJwt,bookingRoutes);
-// app.use('/location',locationRoutes);
-// app.use('/layout',verifyJwt,layoutRoutes);
+
 app.use((req, res, next) => {
   console.log(`Received request for: ${req.originalUrl}`);
   next();
 });
-app.use('/api', noAuthRouter);
-app.use('/api/users', verifyJwt, userRoutes);
-app.use('/api/wishlist', verifyJwt, wishlistRoutes);
-app.use('/api/fields', verifyJwt, fieldRoutes);
-app.use('/api/property', verifyJwt, propertyRoutes);
-app.use('/api/agent', verifyJwt, agentRoutes);
-app.use('/api/residential', verifyJwt, residentialRoutes);
-app.use('/api/commercials', verifyJwt, commercialRoutes);
-app.use('/api/booking', verifyJwt, bookingRoutes);
-app.use('/api/location', locationRoutes);
-app.use('/api/layout', verifyJwt, layoutRoutes);
+app.use('/', noAuthRouter);
+app.use('/users', verifyJwt, userRoutes);
+app.use('/wishlist',verifyJwt, wishlistRoutes);
+app.use('/fields', verifyJwt, fieldRoutes);
+app.use('/property',verifyJwt,propertyRoutes);
+app.use('/agent',verifyJwt,agentRoutes);
+app.use('/residential',verifyJwt,residentialRoutes);
+app.use('/commercials',verifyJwt,commercialRoutes);
+app.use('/booking',verifyJwt,bookingRoutes);
+app.use('/location',locationRoutes);
+app.use('/layout',verifyJwt,layoutRoutes);
 app.use(errorHandler);
 
 
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   console.log('API is working');
   res.send('Welcome to my API!');
 });
