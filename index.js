@@ -47,6 +47,9 @@ app.use('/booking',verifyJwt,bookingRoutes);
 app.use('/location',locationRoutes);
 app.use('/layout',verifyJwt,layoutRoutes);
 app.use(errorHandler);
+app.get('/', (req, res) => {
+  res.send('Welcome to my API!');
+});
 mongoose.connect('mongodb+srv://ITCC:x3txwwBMqr1bQZnR@atlascluster.30o4fpw.mongodb.net/RealEstate?retryWrites=true&w=majority&appName=AtlasCluster')
   .then(() => {
     console.log('DB Connected');
