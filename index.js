@@ -26,29 +26,27 @@ const layoutRoutes = require('./src/routes/layoutRoutes');
 
 const app = express();
 
+// app.use(cors({
+//   origin: '*',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+//   credentials: true,
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+// }));
+
+// app.options('*', cors());
+
 const corsOptions = {
-  origin: '*', // Allow all origins; you can specify specific origins if needed
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS', // Specify allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  origin: 'http://172.17.15.202:3000', // Adjust this to match your frontend's origin
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 };
 
 // Use CORS middleware
 app.use(cors(corsOptions));
 
-// Custom middleware to add additional CORS headers (if needed)
-app.use((req, res, next) => {
-  // Add any additional headers if necessary
-  res.header('Access-Control-Allow-Origin', '*'); // Allow all origins
-  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE'); // Specify allowed methods
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Specify allowed headers
-  
-  // Call next() to pass control to the next middleware
-  next();
-});
-
-// Your existing routes and other middleware
-app.options('*', cors()); // Preflight requests
+// Preflight requests
+app.options('*', cors());
 
 app.use(bodyParser.json());
 
