@@ -65,7 +65,7 @@ app.use(errorHandler);
 
 
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   console.log('API is working');
   res.send('Welcome to my API!');
 });
