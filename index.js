@@ -36,7 +36,7 @@ const app = express();
 // app.options('*', cors());
 
 const corsOptions = {
-  origin: 'https://sample-99d7c.web.app', // Adjust this to match your frontend's origin
+  origin: '*', // Adjust this to match your frontend's origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
