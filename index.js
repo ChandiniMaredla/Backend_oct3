@@ -46,6 +46,10 @@ app.use(bodyParser.json());
 // app.use('/booking',verifyJwt,bookingRoutes);
 // app.use('/location',locationRoutes);
 // app.use('/layout',verifyJwt,layoutRoutes);
+app.use((req, res, next) => {
+  console.log(`Received request for: ${req.originalUrl}`);
+  next();
+});
 app.use('/api', noAuthRouter);
 app.use('/api/users', verifyJwt, userRoutes);
 app.use('/api/wishlist', verifyJwt, wishlistRoutes);
@@ -58,10 +62,14 @@ app.use('/api/booking', verifyJwt, bookingRoutes);
 app.use('/api/location', locationRoutes);
 app.use('/api/layout', verifyJwt, layoutRoutes);
 app.use(errorHandler);
+
+
+
 app.get('/', (req, res) => {
   console.log('API is working');
   res.send('Welcome to my API!');
 });
+
 mongoose.connect('mongodb+srv://ITCC:x3txwwBMqr1bQZnR@atlascluster.30o4fpw.mongodb.net/RealEstate?retryWrites=true&w=majority&appName=AtlasCluster')
   .then(() => {
     console.log('DB Connected');
