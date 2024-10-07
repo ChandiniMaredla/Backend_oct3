@@ -35,12 +35,27 @@ const app = express();
 
 // app.options('*', cors());
 
+// const corsOptions = {
+//   origin: 'https://full-real-estate.web.app', // Adjust this to match your frontend's origin
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+//   allowedHeaders: ['Content-Type', 'Authorization'],
+//   credentials: true,
+// };
 const corsOptions = {
-  origin: 'https://full-real-estate.web.app', // Adjust this to match your frontend's origin
+  origin: (origin, callback) => {
+    const allowedOrigins = ['https://full-real-estate.web.app'];
+
+    if (allowedOrigins.includes(origin) || origin?.startsWith('http://localhost')) {
+      callback(null, true); // Allow specific origins and any localhost
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+
 
 // Use CORS middleware
 app.use(cors(corsOptions));
